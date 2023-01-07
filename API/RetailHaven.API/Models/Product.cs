@@ -10,9 +10,9 @@
         public string? ProductType { get; set; }
         public string? ProductBrand { get; set; }
         public int QuantityInStock { get; set; }
-        public DateOnly DateAdded { get; set; }
-        public DateOnly DateModified { get; set; }
-        public DateOnly DateDeleted { get; set; }
+        public DateTime DateAdded { get; set; }
+        public DateTime DateModified { get; set; }
+        public DateTime DateDeleted { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace RetailHaven.API.Data
             modelBuilder.Entity<Product>()
                 .Property(p => p.IsDeleted)
                 .HasDefaultValueSql("0");
+            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
