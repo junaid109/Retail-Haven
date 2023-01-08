@@ -9,7 +9,18 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddLogging();
 builder.Services.AddDbContext<StoreContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+try
+{
+    var context = builder.Services.BuildServiceProvider().GetRequiredService<StoreContext>();
+    context.Database.Migrate();
+}
+catch (Exception e)
+{
+    Console.WriteLine("Error migrating database: " + e.Message);
+}
+
 
 var app = builder.Build();
 
