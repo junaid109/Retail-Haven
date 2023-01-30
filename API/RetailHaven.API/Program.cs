@@ -21,6 +21,17 @@ catch (Exception e)
     Console.WriteLine("Error migrating database: " + e.Message);
 }
 
+// add cors config
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("AllowAll", builder =>
+	{
+		builder.AllowAnyOrigin()
+			.AllowAnyMethod()
+			.AllowAnyHeader();
+	});
+});
+
 
 var app = builder.Build();
 
@@ -34,6 +45,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("AllowAll");
 
 app.MapControllers();
 
